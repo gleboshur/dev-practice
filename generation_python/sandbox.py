@@ -1,9 +1,5 @@
 n = int(input())
-for i in range(1, n + 1):
-    for j in range(i):
-        print(i, end="")
-    print()
-
-
-
-
+print('*' * 19)
+for _ in range(n - 2):
+    print('*' + ' '*17 + '*')
+print('*' * 19)
