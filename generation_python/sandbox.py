@@ -1,5 +1,3 @@
-n = int(input())
-print('*' * 19)
-for _ in range(n - 2):
-    print('*' + ' '*17 + '*')
-print('*' * 19)
+s = input()
+for i in range(len(s) - 1, -1, -1):
+    print(s[i])
