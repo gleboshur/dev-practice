@@ -1,6 +1,4 @@
-num = int(input())
-res = ""
-while num != 0:
-    res = str(num % 2) + res
-    num //= 2
-print(res)
+s = "In 2010, someone paid 10k Bitcoin for two pizzas."
+print(s[::7])
+
+
