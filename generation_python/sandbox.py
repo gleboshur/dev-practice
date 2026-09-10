@@ -1,5 +1,4 @@
-s = "In 2010, someone paid 10k Bitcoin for two pizzas."
-print(s[::-1])
-
-
-
+s = input()
+first_half = s[: (len(s) + 1) // 2]
+second_half = s[(len(s) + 1) // 2 :]
+print(second_half + first_half)
