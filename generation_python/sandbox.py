@@ -1,7 +1,4 @@
-n = int(input())
-cnt = 0
-for i in range(n):
-    s = input()
-    if s.count('11') >= 3:
-        cnt += 1
-print(cnt)
+s = input()
+left = s.find('h')
+right = s.rfind('h')
+print(s[:left] + s[right + 1:])
