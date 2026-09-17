@@ -1,2 +1,3 @@
-s = list(input())
-print(s[::2])
+s = input()
+seq = s.split("\\")
+print(*seq, sep="\n")
