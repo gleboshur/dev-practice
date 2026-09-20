@@ -1,8 +1,11 @@
-num = input().split('-')
-if len(num) == 3 or (len(num) == 4 and num[0] == '7'):
-    if len(num[-3]) == 3 and len(num[-2]) == 3 and len(num[-1]) == 4  and num[-3].isdigit() and num[-2].isdigit() and num[-1].isdigit():
-        print('YES')
-    else:
-        print('NO')
-else:
-    print('NO')
+def print_symbol_counts(s):
+    chars = list(s.lower())
+    chars.sort()
+    res = ''
+    for el in chars:
+        if el not in res:
+            res += el
+            print(f'{el}: {chars.count(el)}')
+            
+s = input()
+print_symbol_counts(s)
