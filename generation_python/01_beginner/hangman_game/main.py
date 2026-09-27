@@ -632,7 +632,7 @@ while True:
     play(get_word())
     while True:
         again = input('Сыграем еще раз? (д - да, н - нет): ')
-        if is_valid(again) == 'д' or is_valid == 'н':
+        if again == 'д' or again == 'н':
             break         
         else:
             print('Некорректный ввод!')
