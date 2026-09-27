@@ -546,16 +546,19 @@ def is_valid(text):
     while True:
         wrong_symbols = []
         wrong_language = False
+
         for s in text.upper():
             if not s.isalpha():
                 wrong_symbols.append(s)
             else:
                 if s not in 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ':
                     wrong_language = True
+
         if len(wrong_symbols) == 1:
             message = 'екорректный символ'
         else:
             message = 'екорректные символы'
+
         if wrong_language == False and wrong_symbols == []:
             return(text)
         elif wrong_language == False and wrong_symbols != []:
@@ -564,6 +567,7 @@ def is_valid(text):
             print(f'Некорректный язык ввода! Повторите попытку.')
         else:
             print(f'Некорректный язык ввода и н{message}: {', '.join(wrong_symbols)}! Повторите попытку.')
+
         text = input("Введите букву или слово целиком: ")
 
 
@@ -577,6 +581,7 @@ def play(word):
 
     if len(word) < 5:
         suffix = 'ы'
+
     print('------------------------------------------------------------')
     print("Давайте играть в угадайку слов!")
     print(display_hangman(tries))
@@ -584,7 +589,9 @@ def play(word):
 
     while tries > 0:
         print('------------------------------------------------------------')
+
         cur_try = is_valid(input("Введите букву или слово целиком: ")).upper()
+
         while True:
             if 1 < len(cur_try) != len(word):
                 print(f'Некорректная длина слова, введите слово из {len(word)} букв')
@@ -595,6 +602,7 @@ def play(word):
             else:
                 break
             cur_try = is_valid(input("Введите букву или слово целиком: "))
+            
         if len(cur_try) == 1:
             guessed_letters.append(cur_try)
             if cur_try in word:
@@ -628,6 +636,7 @@ def play(word):
     else:
         print(f'Вы проиграли! Загаданное слово: {word}')        
 
+
 while True:
     play(get_word())
     while True:
@@ -641,3 +650,4 @@ while True:
     else:
         print('До встречи!')
         break
+    
