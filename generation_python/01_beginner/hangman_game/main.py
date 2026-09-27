@@ -544,31 +544,49 @@ def display_hangman(tries):
 
 def is_valid(text):
     while True:
-        for s in text:
+        wrong_symbols = []
+        wrong_language = False
+        for s in text.upper():
             if not s.isalpha():
-                print("Ошибка ввода! Повторите попытку. ")
-                break
+                wrong_symbols.append(s)
             else:
-                return text
+                if s not in 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ':
+                    wrong_language = True
+        if len(wrong_symbols) == 1:
+            message = 'екорректный символ'
+        else:
+            message = 'екорректные символы'
+        if wrong_language == False and wrong_symbols == []:
+            return(text)
+        elif wrong_language == False and wrong_symbols != []:
+            print(f'Н{message}: {', '.join(wrong_symbols)}! Повторите попытку.')
+        elif wrong_language == True and wrong_symbols == []:
+            print(f'Некорректный язык ввода! Повторите попытку.')
+        else:
+            print(f'Некорректный язык ввода и н{message}: {', '.join(wrong_symbols)}! Повторите попытку.')
         text = input("Введите букву или слово целиком: ")
 
 
 def play(word):
-    word_completion = "_" * len(word)
-    guessed = False
+    word_completion = ["_"] * len(word)
     guessed_letters = []
     guessed_words = []
     tries = 6
-    text = "Введите букву или слово целиком: "
-    
+    win = f'Поздравляем! Вы угадали слово {word}! Вы победили!'
+    suffix = ''
+
+    if len(word) < 5:
+        suffix = 'ы'
+    print('------------------------------------------------------------')
     print("Давайте играть в угадайку слов!")
     print(display_hangman(tries))
-    print(word_completion)
+    print(''.join(word_completion), f' ({len(word)} букв{suffix})')
 
     while tries > 0:
-        cur_try = is_valid(input("Введите букву или слово целиком: "))
+        print('------------------------------------------------------------')
+        cur_try = is_valid(input("Введите букву или слово целиком: ")).upper()
         while True:
-            if 1 < len(cur_try) < len(word):
+            if 1 < len(cur_try) != len(word):
                 print(f'Некорректная длина слова, введите слово из {len(word)} букв')
             elif len(cur_try) == 1 and cur_try in guessed_letters:
                 print(f"Вы уже называли букву {cur_try}, попробуйте другую букву или слово.")
@@ -578,6 +596,38 @@ def play(word):
                 break
             cur_try = is_valid(input("Введите букву или слово целиком: "))
         if len(cur_try) == 1:
+            guessed_letters.append(cur_try)
             if cur_try in word:
                 for i in range(len(word)):
-                    pass
+                    if cur_try == word[i]:
+                        word_completion[i] = cur_try
+                if ''.join(word_completion) == word:
+                    print(win)
+                    break
+                else:
+                    print(f'Вы угадали букву {cur_try}!')
+                    print(''.join(word_completion), f' ({len(word)} букв)')
+                    continue
+            else:
+                print(f'Буквы {cur_try.upper()} нет в загаданном слове!')
+                tries -= 1
+                print(display_hangman(tries))
+                print(''.join(word_completion), f' ({len(word)} букв)')
+                continue
+        else:
+            guessed_words.append(cur_try)
+            if cur_try == word:
+                print(win)
+                break
+            else:
+                print('Вы не угадали слово!')
+                tries -= 1
+                print(display_hangman(tries))
+                print(''.join(word_completion), f' ({len(word)} букв)')
+                continue
+    else:
+        print(f'Вы проиграли! Загаданное слово: {word}')        
+
+while True:
+    play(get_word())
+                    
