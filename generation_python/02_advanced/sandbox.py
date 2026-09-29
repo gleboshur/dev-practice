@@ -1,6 +1,11 @@
-numbers = [int(num) for num in input().split()]
+n = int(input())
+numbers = [[i for i in range(1, n + 1)] for _ in range(n)]
+print(*numbers, sep='\n')
 
-for i in range(1, len(numbers), 2):
-    numbers[i-1], numbers[i] = numbers[i], numbers[i-1]
 
-print(*numbers)
+# for i in range(n):
+#     numbers.append([i for i in range(1, n + 1)])
+
+# for row in numbers:
+#     print(row)
+    
