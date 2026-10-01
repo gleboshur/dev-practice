@@ -1,10 +1,6 @@
-n, m = [int(el) for el in input().split()]
-symbols = [".", "*"]
+n = int(input())
+matrix = [[int(num) for num in input().split()] for _ in range(n)]
 
-for i in range(n):
-    for j in range(m):
-        print(symbols[0], end=" ")
-        symbols.reverse()
-    if m % 2 == 0:
-        symbols.reverse()
-    print()
+diagonal = [matrix[i][i] for i in range(n)]
+
+print(sum(diagonal))
