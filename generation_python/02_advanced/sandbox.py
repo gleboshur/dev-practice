@@ -1,6 +1,7 @@
-n = int(input())
-matrix = [[int(num) for num in input().split()] for _ in range(n)]
+n, m = [int(el) for el in input().split()]
+matrix = [[0 for _ in range(m)] for _ in range(n)]
 
-diagonal = [matrix[i][i] for i in range(n)]
 
-print(sum(diagonal))
+
+for row in matrix:
+    print(*[str(i).ljust(2) for i in row])
