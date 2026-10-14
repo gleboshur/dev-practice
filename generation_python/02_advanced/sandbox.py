@@ -1,5 +1,5 @@
-student1, student2, student3 = [set([int(el) for el in input().split()]) for _ in range(3)]
+def longest(a1, a2):
+    myset = sorted(set(a1) | set(a2))
+    return ''.join(myset)
 
-res = (student1 & student2) - student3
-
-print(*sorted(res, reverse=True))
+print(longest(a, b))
